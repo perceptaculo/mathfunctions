@@ -27,10 +27,13 @@ def mathgraph(
 
     for x in np.arange(x_rangemin, x_rangemax+1):
         x = x
-        quase_y = function_give.replace('^','**')
+        quase_y = str(function_give).replace('^','**')
         for i in range(0,len(quase_y)):
-            if quase_y[i].isnumeric() and quase_y[i+1].isalpha():
-                quase_y = quase_y.replace(f'{quase_y[i]}{quase_y[i+1]}',f'{quase_y[i]}*{quase_y[i+1]}')
+            try:
+                if quase_y[i].isnumeric() and quase_y[i+1].isalpha():
+                    quase_y = quase_y.replace(f'{quase_y[i]}{quase_y[i+1]}',f'{quase_y[i]}*{quase_y[i+1]}')
+            except:
+                pass
         y = eval(quase_y)
 
         pointsx.append(x)
